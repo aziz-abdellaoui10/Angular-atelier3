@@ -1,0 +1,51 @@
+<form #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
+    <div>
+      <label for="nom">Nom:</label>
+      <input type="text" id="nom" name="nom" ngModel required>
+      <div *ngIf="myForm.controls['nom'].invalid && myForm.controls['nom'].touched">
+        <div *ngIf="myForm.controls['nom'].hasError('required')">Le nom est obligatoire.</div>
+      </div>
+    </div>
+  
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" ngModel required pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$">
+      <div *ngIf="myForm.controls['email'].invalid && myForm.controls['email'].touched">
+        <div *ngIf="myForm.controls['email'].hasError('required')">L'email est obligatoire.</div>
+        <div *ngIf="myForm.controls['email'].hasError('pattern')">L'email n'est pas au bon format.</div>
+      </div>
+    </div>
+  
+    <div>
+      <label for="typeCarte">Type de carte:</label>
+      <input type="text" id="typeCarte" name="typeCarte" ngModel required>
+      <div *ngIf="myForm.controls['typeCarte'].invalid && myForm.controls['typeCarte'].touched">
+        <div *ngIf="myForm.controls['typeCarte'].hasError('required')">Le type de carte est obligatoire.</div>
+      </div>
+    </div>
+  
+    <div>
+      <label for="numeroCarte">Numéro de carte:</label>
+      <input type="text" id="numeroCarte" name="numeroCarte" ngModel required pattern="^[0-9]{16}$">
+      <div *ngIf="myForm.controls['numeroCarte'].invalid && myForm.controls['numeroCarte'].touched">
+        <div *ngIf="myForm.controls['numeroCarte'].hasError('required')">Le numéro de carte est obligatoire.</div>
+        <div *ngIf="myForm.controls['numeroCarte'].hasError('pattern')">Le numéro de carte doit contenir 16 chiffres.</div>
+      </div>
+    </div>
+  
+    <div>
+      <label for="dateExpiration">Date d'expiration:</label>
+      <input type="text" id="dateExpiration" name="dateExpiration" ngModel required>
+      <div *ngIf="myForm.controls['dateExpiration'].invalid && myForm.controls['dateExpiration'].touched">
+        <div *ngIf="myForm.controls['dateExpiration'].hasError('required')">La date d'expiration est obligatoire.</div>
+      </div>
+    </div>
+  
+    <div>
+      <label for="code">Code:</label>
+      <input type="text" id="code" name="code" ngModel [hidden]="myForm.invalid">
+    </div>
+  
+    <button type="submit" [disabled]="myForm.invalid">Ajouter</button>
+  </form>
+  
